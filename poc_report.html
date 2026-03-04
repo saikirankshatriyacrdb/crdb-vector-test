@@ -1,0 +1,1381 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vector PoC Test Report</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+         background: #f5f7fa; color: #333; padding: 2rem; }
+  .container { max-width: 1000px; margin: 0 auto; }
+  h1 { color: #1F4E79; margin-bottom: 0.5rem; }
+  .subtitle { color: #666; margin-bottom: 2rem; }
+  .summary-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+                   gap: 1rem; margin-bottom: 2rem; }
+  .summary-card { background: #fff; border-radius: 8px; padding: 1.2rem;
+                  box-shadow: 0 1px 3px rgba(0,0,0,0.08); text-align: center; }
+  .summary-card .value { font-size: 2rem; font-weight: 700; }
+  .summary-card .label { color: #888; font-size: 0.85rem; margin-top: 0.3rem; }
+  .pass { color: #2e7d32; }
+  .fail { color: #c62828; }
+  .test-section { background: #fff; border-radius: 8px; padding: 1.5rem;
+                  margin-bottom: 1.5rem; box-shadow: 0 1px 3px rgba(0,0,0,0.08); }
+  .test-header { display: flex; justify-content: space-between; align-items: center;
+                 margin-bottom: 1rem; }
+  .test-header h2 { font-size: 1.1rem; color: #1F4E79; }
+  .badge { display: inline-block; padding: 0.25rem 0.75rem; border-radius: 12px;
+           font-size: 0.8rem; font-weight: 600; }
+  .badge-pass { background: #e8f5e9; color: #2e7d32; }
+  .badge-fail { background: #ffebee; color: #c62828; }
+  table { width: 100%; border-collapse: collapse; margin-top: 0.5rem; font-size: 0.9rem; }
+  th { background: #f0f4f8; padding: 0.6rem 0.8rem; text-align: left;
+       border-bottom: 2px solid #ddd; font-weight: 600; color: #555; }
+  td { padding: 0.5rem 0.8rem; border-bottom: 1px solid #eee; }
+  .metric { font-family: 'SF Mono', Consolas, monospace; }
+  pre { background: #f8f9fa; padding: 1rem; border-radius: 6px; overflow-x: auto;
+        font-size: 0.82rem; margin-top: 0.5rem; }
+  .threshold { color: #888; font-size: 0.85rem; }
+</style>
+</head>
+<body>
+<div class="container">
+  <h1>Vector PoC Test Report</h1>
+  <p class="subtitle">CockroachDB v25.4+ &mdash; Generated 2026-03-04 01:46:52</p>
+
+  <div class="summary-grid">
+    <div class="summary-card">
+      <div class="value">10</div>
+      <div class="label">Total Tests</div>
+    </div>
+    <div class="summary-card">
+      <div class="value pass">6</div>
+      <div class="label">Passed</div>
+    </div>
+    <div class="summary-card">
+      <div class="value fail">4</div>
+      <div class="label">Failed</div>
+    </div>
+    <div class="summary-card">
+      <div class="value" style="color: #c62828">NO-GO</div>
+      <div class="label">Verdict</div>
+    </div>
+  </div>
+
+  
+    <div class="test-section">
+      <div class="test-header">
+        <h2>TC-QP-01</h2>
+        <span class="badge badge-pass">PASS</span>
+      </div>
+      <p class="threshold">Threshold: p95 < 100.0 ms, p99 < 150.0 ms</p>
+      <table><tr><td><strong>beam_size</strong></td><td class="metric">32</td></tr><tr><td><strong>dataset_type</strong></td><td class="metric">real-world</td></tr><tr><td><strong>datasets</strong></td><td><pre>{
+  "50000": {
+    "iterations": [
+      {
+        "dataset": 50000,
+        "iteration": 1,
+        "k": 1,
+        "operator": "l2",
+        "indexed": true,
+        "beam_size": 32,
+        "p50_ms": 8.93,
+        "p95_ms": 12.61,
+        "p99_ms": 16.73,
+        "avg_ms": 9.47,
+        "query_count": 1000,
+        "pass": true
+      },
+      {
+        "dataset": 50000,
+        "iteration": 1,
+        "k": 5,
+        "operator": "l2",
+        "indexed": true,
+        "beam_size": 32,
+        "p50_ms": 8.48,
+        "p95_ms": 10.8,
+        "p99_ms": 13.18,
+        "avg_ms": 8.82,
+        "query_count": 1000,
+        "pass": true
+      },
+      {
+        "dataset": 50000,
+        "iteration": 1,
+        "k": 10,
+        "operator": "l2",
+        "indexed": true,
+        "beam_size": 32,
+        "p50_ms": 8.48,
+        "p95_ms": 11.02,
+        "p99_ms": 14.32,
+        "avg_ms": 8.88,
+        "query_count": 1000,
+        "pass": true
+      },
+      {
+        "dataset": 50000,
+        "iteration": 2,
+        "k": 1,
+        "operator": "l2",
+        "indexed": true,
+        "beam_size": 32,
+        "p50_ms": 8.21,
+        "p95_ms": 10.54,
+        "p99_ms": 13.92,
+        "avg_ms": 8.53,
+        "query_count": 1000,
+        "pass": true
+      },
+      {
+        "dataset": 50000,
+        "iteration": 2,
+        "k": 5,
+        "operator": "l2",
+        "indexed": true,
+        "beam_size": 32,
+        "p50_ms": 8.26,
+        "p95_ms": 10.77,
+        "p99_ms": 13.74,
+        "avg_ms": 8.63,
+        "query_count": 1000,
+        "pass": true
+      },
+      {
+        "dataset": 50000,
+        "iteration": 2,
+        "k": 10,
+        "operator": "l2",
+        "indexed": true,
+        "beam_size": 32,
+        "p50_ms": 8.45,
+        "p95_ms": 10.78,
+        "p99_ms": 14.96,
+        "avg_ms": 8.79,
+        "query_count": 1000,
+        "pass": true
+      },
+      {
+        "dataset": 50000,
+        "iteration": 3,
+        "k": 1,
+        "operator": "l2",
+        "indexed": true,
+        "beam_size": 32,
+        "p50_ms": 8.16,
+        "p95_ms": 10.57,
+        "p99_ms": 13.71,
+        "avg_ms": 8.5,
+        "query_count": 1000,
+        "pass": true
+      },
+      {
+        "dataset": 50000,
+        "iteration": 3,
+        "k": 5,
+        "operator": "l2",
+        "indexed": true,
+        "beam_size": 32,
+        "p50_ms": 8.21,
+        "p95_ms": 10.73,
+        "p99_ms": 13.68,
+        "avg_ms": 8.58,
+        "query_count": 1000,
+        "pass": true
+      },
+      {
+        "dataset": 50000,
+        "iteration": 3,
+        "k": 10,
+        "operator": "l2",
+        "indexed": true,
+        "beam_size": 32,
+        "p50_ms": 8.52,
+        "p95_ms": 12.01,
+        "p99_ms": 17.24,
+        "avg_ms": 9.03,
+        "query_count": 1000,
+        "pass": true
+      }
+    ],
+    "pass": true
+  },
+  "100000": {
+    "iterations": [
+      {
+        "dataset": 100000,
+        "iteration": 1,
+        "k": 1,
+        "operator": "l2",
+        "indexed": true,
+        "beam_size": 32,
+        "p50_ms": 15.2,
+        "p95_ms": 18.99,
+        "p99_ms": 23.47,
+        "avg_ms": 15.63,
+        "query_count": 1000,
+        "pass": true
+      },
+      {
+        "dataset": 100000,
+        "iteration": 1,
+        "k": 5,
+        "operator": "l2",
+        "indexed": true,
+        "beam_size": 32,
+        "p50_ms": 14.96,
+        "p95_ms": 18.19,
+        "p99_ms": 24.71,
+        "avg_ms": 15.44,
+        "query_count": 1000,
+        "pass": true
+      },
+      {
+        "dataset": 100000,
+        "iteration": 1,
+        "k": 10,
+        "operator": "l2",
+        "indexed": true,
+        "beam_size": 32,
+        "p50_ms": 15.12,
+        "p95_ms": 18.51,
+        "p99_ms": 23.62,
+        "avg_ms": 15.55,
+        "query_count": 1000,
+        "pass": true
+      },
+      {
+        "dataset": 100000,
+        "iteration": 2,
+        "k": 1,
+        "operator": "l2",
+        "indexed": true,
+        "beam_size": 32,
+        "p50_ms": 14.94,
+        "p95_ms": 19.07,
+        "p99_ms": 24.41,
+        "avg_ms": 15.49,
+        "query_count": 1000,
+        "pass": true
+      },
+      {
+        "dataset": 100000,
+        "iteration": 2,
+        "k": 5,
+        "operator": "l2",
+        "indexed": true,
+        "beam_size": 32,
+        "p50_ms": 14.78,
+        "p95_ms": 18.19,
+        "p99_ms": 24.35,
+        "avg_ms": 15.28,
+        "query_count": 1000,
+        "pass": true
+      },
+      {
+        "dataset": 100000,
+        "iteration": 2,
+        "k": 10,
+        "operator": "l2",
+        "indexed": true,
+        "beam_size": 32,
+        "p50_ms": 15.24,
+        "p95_ms": 19.84,
+        "p99_ms": 23.53,
+        "avg_ms": 15.79,
+        "query_count": 1000,
+        "pass": true
+      },
+      {
+        "dataset": 100000,
+        "iteration": 3,
+        "k": 1,
+        "operator": "l2",
+        "indexed": true,
+        "beam_size": 32,
+        "p50_ms": 14.81,
+        "p95_ms": 18.43,
+        "p99_ms": 23.16,
+        "avg_ms": 15.29,
+        "query_count": 1000,
+        "pass": true
+      },
+      {
+        "dataset": 100000,
+        "iteration": 3,
+        "k": 5,
+        "operator": "l2",
+        "indexed": true,
+        "beam_size": 32,
+        "p50_ms": 14.79,
+        "p95_ms": 18.17,
+        "p99_ms": 24.9,
+        "avg_ms": 15.31,
+        "query_count": 1000,
+        "pass": true
+      },
+      {
+        "dataset": 100000,
+        "iteration": 3,
+        "k": 10,
+        "operator": "l2",
+        "indexed": true,
+        "beam_size": 32,
+        "p50_ms": 14.98,
+        "p95_ms": 18.53,
+        "p99_ms": 23.05,
+        "avg_ms": 15.4,
+        "query_count": 1000,
+        "pass": true
+      }
+    ],
+    "pass": true
+  },
+  "250000": {
+    "iterations": [
+      {
+        "dataset": 250000,
+        "iteration": 1,
+        "k": 1,
+        "operator": "l2",
+        "indexed": true,
+        "beam_size": 32,
+        "p50_ms": 14.7,
+        "p95_ms": 18.05,
+        "p99_ms": 22.11,
+        "avg_ms": 15.1,
+        "query_count": 1000,
+        "pass": true
+      },
+      {
+        "dataset": 250000,
+        "iteration": 1,
+        "k": 5,
+        "operator": "l2",
+        "indexed": true,
+        "beam_size": 32,
+        "p50_ms": 14.39,
+        "p95_ms": 17.96,
+        "p99_ms": 22.35,
+        "avg_ms": 14.8,
+        "query_count": 1000,
+        "pass": true
+      },
+      {
+        "dataset": 250000,
+        "iteration": 1,
+        "k": 10,
+        "operator": "l2",
+        "indexed": true,
+        "beam_size": 32,
+        "p50_ms": 14.65,
+        "p95_ms": 18.66,
+        "p99_ms": 23.2,
+        "avg_ms": 15.13,
+        "query_count": 1000,
+        "pass": true
+      },
+      {
+        "dataset": 250000,
+        "iteration": 2,
+        "k": 1,
+        "operator": "l2",
+        "indexed": true,
+        "beam_size": 32,
+        "p50_ms": 14.49,
+        "p95_ms": 18.72,
+        "p99_ms": 22.7,
+        "avg_ms": 14.97,
+        "query_count": 1000,
+        "pass": true
+      },
+      {
+        "dataset": 250000,
+        "iteration": 2,
+        "k": 5,
+        "operator": "l2",
+        "indexed": true,
+        "beam_size": 32,
+        "p50_ms": 14.46,
+        "p95_ms": 18.55,
+        "p99_ms": 22.92,
+        "avg_ms": 14.98,
+        "query_count": 1000,
+        "pass": true
+      },
+      {
+        "dataset": 250000,
+        "iteration": 2,
+        "k": 10,
+        "operator": "l2",
+        "indexed": true,
+        "beam_size": 32,
+        "p50_ms": 14.19,
+        "p95_ms": 18.03,
+        "p99_ms": 23.83,
+        "avg_ms": 14.72,
+        "query_count": 1000,
+        "pass": true
+      },
+      {
+        "dataset": 250000,
+        "iteration": 3,
+        "k": 1,
+        "operator": "l2",
+        "indexed": true,
+        "beam_size": 32,
+        "p50_ms": 14.01,
+        "p95_ms": 17.02,
+        "p99_ms": 21.31,
+        "avg_ms": 14.4,
+        "query_count": 1000,
+        "pass": true
+      },
+      {
+        "dataset": 250000,
+        "iteration": 3,
+        "k": 5,
+        "operator": "l2",
+        "indexed": true,
+        "beam_size": 32,
+        "p50_ms": 14.25,
+        "p95_ms": 18.01,
+        "p99_ms": 21.41,
+        "avg_ms": 14.67,
+        "query_count": 1000,
+        "pass": true
+      },
+      {
+        "dataset": 250000,
+        "iteration": 3,
+        "k": 10,
+        "operator": "l2",
+        "indexed": true,
+        "beam_size": 32,
+        "p50_ms": 14.14,
+        "p95_ms": 17.63,
+        "p99_ms": 22.67,
+        "avg_ms": 14.57,
+        "query_count": 1000,
+        "pass": true
+      }
+    ],
+    "pass": true
+  }
+}</pre></td></tr></table>
+      
+    </div>
+    
+
+    <div class="test-section">
+      <div class="test-header">
+        <h2>TC-QP-02</h2>
+        <span class="badge badge-pass">PASS</span>
+      </div>
+      <p class="threshold">Threshold: p95 < 200.0 ms, p99 < 300.0 ms</p>
+      <table><tr><td><strong>beam_size</strong></td><td class="metric">32</td></tr><tr><td><strong>dataset_type</strong></td><td class="metric">real-world</td></tr><tr><td><strong>dataset</strong></td><td class="metric">500000</td></tr><tr><td><strong>iterations</strong></td><td><pre>[
+  {
+    "iteration": 1,
+    "k": 1,
+    "beam_size": 32,
+    "p50_ms": 14.81,
+    "p95_ms": 18.67,
+    "p99_ms": 23.1,
+    "avg_ms": 15.22,
+    "pass": true
+  },
+  {
+    "iteration": 1,
+    "k": 5,
+    "beam_size": 32,
+    "p50_ms": 13.82,
+    "p95_ms": 17.62,
+    "p99_ms": 22.79,
+    "avg_ms": 14.29,
+    "pass": true
+  },
+  {
+    "iteration": 1,
+    "k": 10,
+    "beam_size": 32,
+    "p50_ms": 14.08,
+    "p95_ms": 18.16,
+    "p99_ms": 24.52,
+    "avg_ms": 14.65,
+    "pass": true
+  },
+  {
+    "iteration": 2,
+    "k": 1,
+    "beam_size": 32,
+    "p50_ms": 14.26,
+    "p95_ms": 20.44,
+    "p99_ms": 29.93,
+    "avg_ms": 15.17,
+    "pass": true
+  },
+  {
+    "iteration": 2,
+    "k": 5,
+    "beam_size": 32,
+    "p50_ms": 13.63,
+    "p95_ms": 16.59,
+    "p99_ms": 21.85,
+    "avg_ms": 14.06,
+    "pass": true
+  },
+  {
+    "iteration": 2,
+    "k": 10,
+    "beam_size": 32,
+    "p50_ms": 13.94,
+    "p95_ms": 17.66,
+    "p99_ms": 22.58,
+    "avg_ms": 14.42,
+    "pass": true
+  },
+  {
+    "iteration": 3,
+    "k": 1,
+    "beam_size": 32,
+    "p50_ms": 13.62,
+    "p95_ms": 16.83,
+    "p99_ms": 21.22,
+    "avg_ms": 14.04,
+    "pass": true
+  },
+  {
+    "iteration": 3,
+    "k": 5,
+    "beam_size": 32,
+    "p50_ms": 13.68,
+    "p95_ms": 16.98,
+    "p99_ms": 22.68,
+    "avg_ms": 14.15,
+    "pass": true
+  },
+  {
+    "iteration": 3,
+    "k": 10,
+    "beam_size": 32,
+    "p50_ms": 13.81,
+    "p95_ms": 17.19,
+    "p99_ms": 22.05,
+    "avg_ms": 14.22,
+    "pass": true
+  }
+]</pre></td></tr></table>
+      
+    </div>
+    
+
+    <div class="test-section">
+      <div class="test-header">
+        <h2>TC-QP-03</h2>
+        <span class="badge badge-fail">FAIL</span>
+      </div>
+      <p class="threshold">Threshold: recall@10 >= 0.9</p>
+      <table><tr><td><strong>avg_recall</strong></td><td class="metric">0.0</td></tr><tr><td><strong>min_recall</strong></td><td class="metric">0.0</td></tr><tr><td><strong>max_recall</strong></td><td class="metric">0.0</td></tr><tr><td><strong>p10_recall</strong></td><td class="metric">0.0</td></tr><tr><td><strong>n_queries</strong></td><td class="metric">500</td></tr><tr><td><strong>beam_size</strong></td><td class="metric">32</td></tr><tr><td><strong>dataset_type</strong></td><td class="metric">real-world</td></tr></table>
+      
+    </div>
+    
+
+    <div class="test-section">
+      <div class="test-header">
+        <h2>TC-IU-01</h2>
+        <span class="badge badge-pass">PASS</span>
+      </div>
+      <p class="threshold">Threshold: avg < 50.0 ms</p>
+      <table><tr><td><strong>insert_avg_ms</strong></td><td class="metric">8.86</td></tr><tr><td><strong>insert_p95_ms</strong></td><td class="metric">13.59</td></tr><tr><td><strong>insert_p99_ms</strong></td><td class="metric">13.59</td></tr><tr><td><strong>update_avg_ms</strong></td><td class="metric">27.98</td></tr><tr><td><strong>update_p95_ms</strong></td><td class="metric">47.75</td></tr><tr><td><strong>update_p99_ms</strong></td><td class="metric">47.75</td></tr><tr><td><strong>insert_throughput_per_sec</strong></td><td class="metric">112.9</td></tr><tr><td><strong>update_throughput_per_sec</strong></td><td class="metric">35.7</td></tr><tr><td><strong>pipeline_size</strong></td><td class="metric">100</td></tr><tr><td><strong>n_operations</strong></td><td class="metric">1000</td></tr><tr><td><strong>dataset_type</strong></td><td class="metric">real-world</td></tr></table>
+      
+    </div>
+    
+
+    <div class="test-section">
+      <div class="test-header">
+        <h2>TC-IU-02</h2>
+        <span class="badge badge-pass">PASS</span>
+      </div>
+      <p class="threshold">Threshold: >= 5000 emb/min</p>
+      <table><tr><td><strong>dataset_type</strong></td><td class="metric">real-world</td></tr><tr><td><strong>results</strong></td><td><pre>{
+  "1": {
+    "concurrency": 1,
+    "vectors": 50000,
+    "elapsed_sec": 126.48,
+    "embeddings_per_min": 23719.0,
+    "pass": true
+  },
+  "5": {
+    "concurrency": 5,
+    "vectors": 50000,
+    "elapsed_sec": 40.91,
+    "embeddings_per_min": 73338.0,
+    "pass": true
+  },
+  "10": {
+    "concurrency": 10,
+    "vectors": 50000,
+    "elapsed_sec": 37.94,
+    "embeddings_per_min": 79080.0,
+    "pass": true
+  }
+}</pre></td></tr></table>
+      
+    </div>
+    
+
+    <div class="test-section">
+      <div class="test-header">
+        <h2>TC-IU-03</h2>
+        <span class="badge badge-fail">FAIL</span>
+      </div>
+      <p class="threshold">Threshold: p95 < 5.0 sec</p>
+      <table><tr><td><strong>avg_sec</strong></td><td class="metric">10.0</td></tr><tr><td><strong>p95_sec</strong></td><td class="metric">10.0</td></tr><tr><td><strong>p99_sec</strong></td><td class="metric">10.0</td></tr><tr><td><strong>timed_out</strong></td><td class="metric">100</td></tr><tr><td><strong>trials</strong></td><td class="metric">100</td></tr><tr><td><strong>dataset_type</strong></td><td class="metric">real-world</td></tr></table>
+      
+    </div>
+    
+
+    <div class="test-section">
+      <div class="test-header">
+        <h2>TC-FC-01</h2>
+        <span class="badge badge-pass">PASS</span>
+      </div>
+      <p class="threshold">Threshold: All 3 operators return correct top-10 for 1536-dim</p>
+      <table><tr><td><strong>dimensions</strong></td><td class="metric">1536</td></tr><tr><td><strong>dataset_type</strong></td><td class="metric">real-world</td></tr><tr><td><strong>operators</strong></td><td><pre>{
+  "l2": {
+    "name": "L2 distance",
+    "operator": "<->",
+    "returned_rows": 10,
+    "correctly_ordered": true,
+    "pass": true,
+    "sample_scores": [
+      0.639431,
+      0.670034,
+      0.670627
+    ]
+  },
+  "cosine": {
+    "name": "Cosine similarity",
+    "operator": "<=>",
+    "returned_rows": 10,
+    "correctly_ordered": true,
+    "pass": true,
+    "sample_scores": [
+      0.204437,
+      0.224472,
+      0.22487
+    ]
+  },
+  "ip": {
+    "name": "Inner product",
+    "operator": "<#>",
+    "returned_rows": 10,
+    "correctly_ordered": true,
+    "pass": true,
+    "sample_scores": [
+      -0.795563,
+      -0.775527,
+      -0.77513
+    ]
+  }
+}</pre></td></tr></table>
+      
+    </div>
+    
+
+    <div class="test-section">
+      <div class="test-header">
+        <h2>TC-FC-02</h2>
+        <span class="badge badge-pass">PASS</span>
+      </div>
+      <p class="threshold">Threshold: Index in EXPLAIN + >= 2x speedup</p>
+      <table><tr><td><strong>no_index_avg_ms</strong></td><td class="metric">118.71</td></tr><tr><td><strong>indexed_avg_ms</strong></td><td class="metric">16.39</td></tr><tr><td><strong>speedup</strong></td><td class="metric">7.24</td></tr><tr><td><strong>beam_size</strong></td><td class="metric">32</td></tr><tr><td><strong>explain_shows_index</strong></td><td class="metric">True</td></tr><tr><td><strong>dataset_type</strong></td><td class="metric">real-world</td></tr></table>
+      <h3 style="margin-top:1rem;font-size:0.95rem;">EXPLAIN Plan</h3><pre>distribution: local
+vectorized: true
+
+• top-k
+│ estimated row count: 10
+│ order: +column7
+│ k: 10
+│
+└── • render
+    │
+    └── • lookup join
+        │ table: tc_fc02_vectors@tc_fc02_vectors_pkey
+        │ equality: (id) = (id)
+        │ equality cols are key
+        │
+        └── • vector search
+              table: tc_fc02_vectors@idx_tc_fc02_vectors_l2
+              target count: 10</pre>
+    </div>
+    
+
+    <div class="test-section">
+      <div class="test-header">
+        <h2>TC-AS-01</h2>
+        <span class="badge badge-fail">FAIL</span>
+      </div>
+      <p class="threshold">Threshold: </p>
+      <table><tr><td><strong>error</strong></td><td class="metric">column "id" does not exist</td></tr></table>
+      
+    </div>
+    
+
+    <div class="test-section">
+      <div class="test-header">
+        <h2>TC-AS-02</h2>
+        <span class="badge badge-fail">FAIL</span>
+      </div>
+      <p class="threshold">Threshold: </p>
+      <table><tr><td><strong>error</strong></td><td class="metric">unknown function: pg_total_relation_size()</td></tr></table>
+      
+    </div>
+    
+
+  <div class="test-section">
+    <h2>Raw Results (JSON)</h2>
+    <pre>[
+  {
+    "test_id": "TC-QP-01",
+    "pass": true,
+    "threshold": "p95 < 100.0 ms, p99 < 150.0 ms",
+    "beam_size": 32,
+    "dataset_type": "real-world",
+    "datasets": {
+      "50000": {
+        "iterations": [
+          {
+            "dataset": 50000,
+            "iteration": 1,
+            "k": 1,
+            "operator": "l2",
+            "indexed": true,
+            "beam_size": 32,
+            "p50_ms": 8.93,
+            "p95_ms": 12.61,
+            "p99_ms": 16.73,
+            "avg_ms": 9.47,
+            "query_count": 1000,
+            "pass": true
+          },
+          {
+            "dataset": 50000,
+            "iteration": 1,
+            "k": 5,
+            "operator": "l2",
+            "indexed": true,
+            "beam_size": 32,
+            "p50_ms": 8.48,
+            "p95_ms": 10.8,
+            "p99_ms": 13.18,
+            "avg_ms": 8.82,
+            "query_count": 1000,
+            "pass": true
+          },
+          {
+            "dataset": 50000,
+            "iteration": 1,
+            "k": 10,
+            "operator": "l2",
+            "indexed": true,
+            "beam_size": 32,
+            "p50_ms": 8.48,
+            "p95_ms": 11.02,
+            "p99_ms": 14.32,
+            "avg_ms": 8.88,
+            "query_count": 1000,
+            "pass": true
+          },
+          {
+            "dataset": 50000,
+            "iteration": 2,
+            "k": 1,
+            "operator": "l2",
+            "indexed": true,
+            "beam_size": 32,
+            "p50_ms": 8.21,
+            "p95_ms": 10.54,
+            "p99_ms": 13.92,
+            "avg_ms": 8.53,
+            "query_count": 1000,
+            "pass": true
+          },
+          {
+            "dataset": 50000,
+            "iteration": 2,
+            "k": 5,
+            "operator": "l2",
+            "indexed": true,
+            "beam_size": 32,
+            "p50_ms": 8.26,
+            "p95_ms": 10.77,
+            "p99_ms": 13.74,
+            "avg_ms": 8.63,
+            "query_count": 1000,
+            "pass": true
+          },
+          {
+            "dataset": 50000,
+            "iteration": 2,
+            "k": 10,
+            "operator": "l2",
+            "indexed": true,
+            "beam_size": 32,
+            "p50_ms": 8.45,
+            "p95_ms": 10.78,
+            "p99_ms": 14.96,
+            "avg_ms": 8.79,
+            "query_count": 1000,
+            "pass": true
+          },
+          {
+            "dataset": 50000,
+            "iteration": 3,
+            "k": 1,
+            "operator": "l2",
+            "indexed": true,
+            "beam_size": 32,
+            "p50_ms": 8.16,
+            "p95_ms": 10.57,
+            "p99_ms": 13.71,
+            "avg_ms": 8.5,
+            "query_count": 1000,
+            "pass": true
+          },
+          {
+            "dataset": 50000,
+            "iteration": 3,
+            "k": 5,
+            "operator": "l2",
+            "indexed": true,
+            "beam_size": 32,
+            "p50_ms": 8.21,
+            "p95_ms": 10.73,
+            "p99_ms": 13.68,
+            "avg_ms": 8.58,
+            "query_count": 1000,
+            "pass": true
+          },
+          {
+            "dataset": 50000,
+            "iteration": 3,
+            "k": 10,
+            "operator": "l2",
+            "indexed": true,
+            "beam_size": 32,
+            "p50_ms": 8.52,
+            "p95_ms": 12.01,
+            "p99_ms": 17.24,
+            "avg_ms": 9.03,
+            "query_count": 1000,
+            "pass": true
+          }
+        ],
+        "pass": true
+      },
+      "100000": {
+        "iterations": [
+          {
+            "dataset": 100000,
+            "iteration": 1,
+            "k": 1,
+            "operator": "l2",
+            "indexed": true,
+            "beam_size": 32,
+            "p50_ms": 15.2,
+            "p95_ms": 18.99,
+            "p99_ms": 23.47,
+            "avg_ms": 15.63,
+            "query_count": 1000,
+            "pass": true
+          },
+          {
+            "dataset": 100000,
+            "iteration": 1,
+            "k": 5,
+            "operator": "l2",
+            "indexed": true,
+            "beam_size": 32,
+            "p50_ms": 14.96,
+            "p95_ms": 18.19,
+            "p99_ms": 24.71,
+            "avg_ms": 15.44,
+            "query_count": 1000,
+            "pass": true
+          },
+          {
+            "dataset": 100000,
+            "iteration": 1,
+            "k": 10,
+            "operator": "l2",
+            "indexed": true,
+            "beam_size": 32,
+            "p50_ms": 15.12,
+            "p95_ms": 18.51,
+            "p99_ms": 23.62,
+            "avg_ms": 15.55,
+            "query_count": 1000,
+            "pass": true
+          },
+          {
+            "dataset": 100000,
+            "iteration": 2,
+            "k": 1,
+            "operator": "l2",
+            "indexed": true,
+            "beam_size": 32,
+            "p50_ms": 14.94,
+            "p95_ms": 19.07,
+            "p99_ms": 24.41,
+            "avg_ms": 15.49,
+            "query_count": 1000,
+            "pass": true
+          },
+          {
+            "dataset": 100000,
+            "iteration": 2,
+            "k": 5,
+            "operator": "l2",
+            "indexed": true,
+            "beam_size": 32,
+            "p50_ms": 14.78,
+            "p95_ms": 18.19,
+            "p99_ms": 24.35,
+            "avg_ms": 15.28,
+            "query_count": 1000,
+            "pass": true
+          },
+          {
+            "dataset": 100000,
+            "iteration": 2,
+            "k": 10,
+            "operator": "l2",
+            "indexed": true,
+            "beam_size": 32,
+            "p50_ms": 15.24,
+            "p95_ms": 19.84,
+            "p99_ms": 23.53,
+            "avg_ms": 15.79,
+            "query_count": 1000,
+            "pass": true
+          },
+          {
+            "dataset": 100000,
+            "iteration": 3,
+            "k": 1,
+            "operator": "l2",
+            "indexed": true,
+            "beam_size": 32,
+            "p50_ms": 14.81,
+            "p95_ms": 18.43,
+            "p99_ms": 23.16,
+            "avg_ms": 15.29,
+            "query_count": 1000,
+            "pass": true
+          },
+          {
+            "dataset": 100000,
+            "iteration": 3,
+            "k": 5,
+            "operator": "l2",
+            "indexed": true,
+            "beam_size": 32,
+            "p50_ms": 14.79,
+            "p95_ms": 18.17,
+            "p99_ms": 24.9,
+            "avg_ms": 15.31,
+            "query_count": 1000,
+            "pass": true
+          },
+          {
+            "dataset": 100000,
+            "iteration": 3,
+            "k": 10,
+            "operator": "l2",
+            "indexed": true,
+            "beam_size": 32,
+            "p50_ms": 14.98,
+            "p95_ms": 18.53,
+            "p99_ms": 23.05,
+            "avg_ms": 15.4,
+            "query_count": 1000,
+            "pass": true
+          }
+        ],
+        "pass": true
+      },
+      "250000": {
+        "iterations": [
+          {
+            "dataset": 250000,
+            "iteration": 1,
+            "k": 1,
+            "operator": "l2",
+            "indexed": true,
+            "beam_size": 32,
+            "p50_ms": 14.7,
+            "p95_ms": 18.05,
+            "p99_ms": 22.11,
+            "avg_ms": 15.1,
+            "query_count": 1000,
+            "pass": true
+          },
+          {
+            "dataset": 250000,
+            "iteration": 1,
+            "k": 5,
+            "operator": "l2",
+            "indexed": true,
+            "beam_size": 32,
+            "p50_ms": 14.39,
+            "p95_ms": 17.96,
+            "p99_ms": 22.35,
+            "avg_ms": 14.8,
+            "query_count": 1000,
+            "pass": true
+          },
+          {
+            "dataset": 250000,
+            "iteration": 1,
+            "k": 10,
+            "operator": "l2",
+            "indexed": true,
+            "beam_size": 32,
+            "p50_ms": 14.65,
+            "p95_ms": 18.66,
+            "p99_ms": 23.2,
+            "avg_ms": 15.13,
+            "query_count": 1000,
+            "pass": true
+          },
+          {
+            "dataset": 250000,
+            "iteration": 2,
+            "k": 1,
+            "operator": "l2",
+            "indexed": true,
+            "beam_size": 32,
+            "p50_ms": 14.49,
+            "p95_ms": 18.72,
+            "p99_ms": 22.7,
+            "avg_ms": 14.97,
+            "query_count": 1000,
+            "pass": true
+          },
+          {
+            "dataset": 250000,
+            "iteration": 2,
+            "k": 5,
+            "operator": "l2",
+            "indexed": true,
+            "beam_size": 32,
+            "p50_ms": 14.46,
+            "p95_ms": 18.55,
+            "p99_ms": 22.92,
+            "avg_ms": 14.98,
+            "query_count": 1000,
+            "pass": true
+          },
+          {
+            "dataset": 250000,
+            "iteration": 2,
+            "k": 10,
+            "operator": "l2",
+            "indexed": true,
+            "beam_size": 32,
+            "p50_ms": 14.19,
+            "p95_ms": 18.03,
+            "p99_ms": 23.83,
+            "avg_ms": 14.72,
+            "query_count": 1000,
+            "pass": true
+          },
+          {
+            "dataset": 250000,
+            "iteration": 3,
+            "k": 1,
+            "operator": "l2",
+            "indexed": true,
+            "beam_size": 32,
+            "p50_ms": 14.01,
+            "p95_ms": 17.02,
+            "p99_ms": 21.31,
+            "avg_ms": 14.4,
+            "query_count": 1000,
+            "pass": true
+          },
+          {
+            "dataset": 250000,
+            "iteration": 3,
+            "k": 5,
+            "operator": "l2",
+            "indexed": true,
+            "beam_size": 32,
+            "p50_ms": 14.25,
+            "p95_ms": 18.01,
+            "p99_ms": 21.41,
+            "avg_ms": 14.67,
+            "query_count": 1000,
+            "pass": true
+          },
+          {
+            "dataset": 250000,
+            "iteration": 3,
+            "k": 10,
+            "operator": "l2",
+            "indexed": true,
+            "beam_size": 32,
+            "p50_ms": 14.14,
+            "p95_ms": 17.63,
+            "p99_ms": 22.67,
+            "avg_ms": 14.57,
+            "query_count": 1000,
+            "pass": true
+          }
+        ],
+        "pass": true
+      }
+    }
+  },
+  {
+    "test_id": "TC-QP-02",
+    "pass": true,
+    "threshold": "p95 < 200.0 ms, p99 < 300.0 ms",
+    "beam_size": 32,
+    "dataset_type": "real-world",
+    "dataset": 500000,
+    "iterations": [
+      {
+        "iteration": 1,
+        "k": 1,
+        "beam_size": 32,
+        "p50_ms": 14.81,
+        "p95_ms": 18.67,
+        "p99_ms": 23.1,
+        "avg_ms": 15.22,
+        "pass": true
+      },
+      {
+        "iteration": 1,
+        "k": 5,
+        "beam_size": 32,
+        "p50_ms": 13.82,
+        "p95_ms": 17.62,
+        "p99_ms": 22.79,
+        "avg_ms": 14.29,
+        "pass": true
+      },
+      {
+        "iteration": 1,
+        "k": 10,
+        "beam_size": 32,
+        "p50_ms": 14.08,
+        "p95_ms": 18.16,
+        "p99_ms": 24.52,
+        "avg_ms": 14.65,
+        "pass": true
+      },
+      {
+        "iteration": 2,
+        "k": 1,
+        "beam_size": 32,
+        "p50_ms": 14.26,
+        "p95_ms": 20.44,
+        "p99_ms": 29.93,
+        "avg_ms": 15.17,
+        "pass": true
+      },
+      {
+        "iteration": 2,
+        "k": 5,
+        "beam_size": 32,
+        "p50_ms": 13.63,
+        "p95_ms": 16.59,
+        "p99_ms": 21.85,
+        "avg_ms": 14.06,
+        "pass": true
+      },
+      {
+        "iteration": 2,
+        "k": 10,
+        "beam_size": 32,
+        "p50_ms": 13.94,
+        "p95_ms": 17.66,
+        "p99_ms": 22.58,
+        "avg_ms": 14.42,
+        "pass": true
+      },
+      {
+        "iteration": 3,
+        "k": 1,
+        "beam_size": 32,
+        "p50_ms": 13.62,
+        "p95_ms": 16.83,
+        "p99_ms": 21.22,
+        "avg_ms": 14.04,
+        "pass": true
+      },
+      {
+        "iteration": 3,
+        "k": 5,
+        "beam_size": 32,
+        "p50_ms": 13.68,
+        "p95_ms": 16.98,
+        "p99_ms": 22.68,
+        "avg_ms": 14.15,
+        "pass": true
+      },
+      {
+        "iteration": 3,
+        "k": 10,
+        "beam_size": 32,
+        "p50_ms": 13.81,
+        "p95_ms": 17.19,
+        "p99_ms": 22.05,
+        "avg_ms": 14.22,
+        "pass": true
+      }
+    ]
+  },
+  {
+    "test_id": "TC-QP-03",
+    "pass": false,
+    "threshold": "recall@10 >= 0.9",
+    "avg_recall": 0.0,
+    "min_recall": 0.0,
+    "max_recall": 0.0,
+    "p10_recall": 0.0,
+    "n_queries": 500,
+    "beam_size": 32,
+    "dataset_type": "real-world"
+  },
+  {
+    "test_id": "TC-IU-01",
+    "pass": "True",
+    "threshold": "avg < 50.0 ms",
+    "insert_avg_ms": 8.86,
+    "insert_p95_ms": 13.59,
+    "insert_p99_ms": 13.59,
+    "update_avg_ms": 27.98,
+    "update_p95_ms": 47.75,
+    "update_p99_ms": 47.75,
+    "insert_throughput_per_sec": 112.9,
+    "update_throughput_per_sec": 35.7,
+    "pipeline_size": 100,
+    "n_operations": 1000,
+    "dataset_type": "real-world"
+  },
+  {
+    "test_id": "TC-IU-02",
+    "pass": true,
+    "threshold": ">= 5000 emb/min",
+    "dataset_type": "real-world",
+    "results": {
+      "1": {
+        "concurrency": 1,
+        "vectors": 50000,
+        "elapsed_sec": 126.48,
+        "embeddings_per_min": 23719.0,
+        "pass": true
+      },
+      "5": {
+        "concurrency": 5,
+        "vectors": 50000,
+        "elapsed_sec": 40.91,
+        "embeddings_per_min": 73338.0,
+        "pass": true
+      },
+      "10": {
+        "concurrency": 10,
+        "vectors": 50000,
+        "elapsed_sec": 37.94,
+        "embeddings_per_min": 79080.0,
+        "pass": true
+      }
+    }
+  },
+  {
+    "test_id": "TC-IU-03",
+    "pass": "False",
+    "threshold": "p95 < 5.0 sec",
+    "avg_sec": 10.0,
+    "p95_sec": 10.0,
+    "p99_sec": 10.0,
+    "timed_out": 100,
+    "trials": 100,
+    "dataset_type": "real-world"
+  },
+  {
+    "test_id": "TC-FC-01",
+    "pass": true,
+    "threshold": "All 3 operators return correct top-10 for 1536-dim",
+    "dimensions": 1536,
+    "dataset_type": "real-world",
+    "operators": {
+      "l2": {
+        "name": "L2 distance",
+        "operator": "<->",
+        "returned_rows": 10,
+        "correctly_ordered": true,
+        "pass": true,
+        "sample_scores": [
+          0.639431,
+          0.670034,
+          0.670627
+        ]
+      },
+      "cosine": {
+        "name": "Cosine similarity",
+        "operator": "<=>",
+        "returned_rows": 10,
+        "correctly_ordered": true,
+        "pass": true,
+        "sample_scores": [
+          0.204437,
+          0.224472,
+          0.22487
+        ]
+      },
+      "ip": {
+        "name": "Inner product",
+        "operator": "<#>",
+        "returned_rows": 10,
+        "correctly_ordered": true,
+        "pass": true,
+        "sample_scores": [
+          -0.795563,
+          -0.775527,
+          -0.77513
+        ]
+      }
+    }
+  },
+  {
+    "test_id": "TC-FC-02",
+    "pass": "True",
+    "threshold": "Index in EXPLAIN + >= 2x speedup",
+    "no_index_avg_ms": 118.71,
+    "indexed_avg_ms": 16.39,
+    "speedup": 7.24,
+    "beam_size": 32,
+    "explain_shows_index": true,
+    "explain_plan": "distribution: local\nvectorized: true\n\n\u2022 top-k\n\u2502 estimated row count: 10\n\u2502 order: +column7\n\u2502 k: 10\n\u2502\n\u2514\u2500\u2500 \u2022 render\n    \u2502\n    \u2514\u2500\u2500 \u2022 lookup join\n        \u2502 table: tc_fc02_vectors@tc_fc02_vectors_pkey\n        \u2502 equality: (id) = (id)\n        \u2502 equality cols are key\n        \u2502\n        \u2514\u2500\u2500 \u2022 vector search\n              table: tc_fc02_vectors@idx_tc_fc02_vectors_l2\n              target count: 10",
+    "dataset_type": "real-world"
+  },
+  {
+    "test_id": "TC-AS-01",
+    "pass": false,
+    "error": "column \"id\" does not exist"
+  },
+  {
+    "test_id": "TC-AS-02",
+    "pass": false,
+    "error": "unknown function: pg_total_relation_size()"
+  }
+]</pre>
+  </div>
+</div>
+</body>
+</html>

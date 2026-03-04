@@ -1,0 +1,43 @@
+# Sensitive data
+.env
+*.pem
+*.crt
+*.key
+
+# Claude Code config
+.claude/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+.eggs/
+dist/
+build/
+*.egg
+
+# Data files (large, downloaded at runtime)
+data/
+*.npy
+*.parquet
+
+# Reports (generated at runtime)
+reports/
+
+# Logs
+logs/
+*.log
+
+# Binary documents
+*.docx
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
